@@ -1,0 +1,96 @@
+Experiment No: 2 
+Familiarization of SQL Constraints
+
+mysql> CREATE TABLE Persons (PersonID INT PRIMARY KEY,Name VARCHAR(100) NOT NULL,Aadhar BIGINT NOT NULL UNIQUE,Age INT CHECK (Age > 18));
+Query OK, 0 rows affected (0.34 sec)
+
+mysql> CREATE TABLE Orders (OrderID INT PRIMARY KEY,OrderNumber INT NOT NULL,PersonID INT,FOREIGN KEY (PersonID) REFERENCES Persons(PersonID));
+Query OK, 0 rows affected (0.37 sec)
+
+mysql> DESC Persons;
++----------+--------------+------+-----+---------+-------+
+| Field    | Type         | Null | Key | Default | Extra |
++----------+--------------+------+-----+---------+-------+
+| PersonID | int(11)      | NO   | PRI | NULL    |       |
+| Name     | varchar(100) | NO   |     | NULL    |       |
+| Aadhar   | bigint(20)   | NO   | UNI | NULL    |       |
+| Age      | int(11)      | YES  |     | NULL    |       |
++----------+--------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> DESC Orders;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| OrderID     | int(11) | NO   | PRI | NULL    |       |
+| OrderNumber | int(11) | NO   |     | NULL    |       |
+| PersonID    | int(11) | YES  | MUL | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Employee ADD CONSTRAINT pk_employee PRIMARY KEY (emp_no);
+Query OK, 0 rows affected (0.56 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC Employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| emp_no      | varchar(10) | NO   | PRI | NULL    |       |
+| emp_name    | varchar(50) | YES  |     | NULL    |       |
+| dob         | date        | YES  |     | NULL    |       |
+| address     | text        | YES  |     | NULL    |       |
+| mobile_no   | bigint(20)  | YES  |     | NULL    |       |
+| dept_no     | varchar(10) | YES  |     | NULL    |       |
+| salary      | int(11)     | YES  |     | NULL    |       |
+| Designation | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Department ADD CONSTRAINT pk_department PRIMARY KEY (dept_no);
+Query OK, 0 rows affected (0.65 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC Department;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dept_no   | varchar(10) | NO   | PRI | NULL    |       |
+| dept_name | varchar(50) | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Employee ADD CONSTRAINT fk_dept FOREIGN KEY (dept_no)
+    -> REFERENCES Department(dept_no) ON DELETE CASCADE;
+Query OK, 0 rows affected (0.79 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC Employee;
++-------------+-------------+------+-----+---------+-------+
+| Field       | Type        | Null | Key | Default | Extra |
++-------------+-------------+------+-----+---------+-------+
+| emp_no      | varchar(10) | NO   | PRI | NULL    |       |
+| emp_name    | varchar(50) | YES  |     | NULL    |       |
+| dob         | date        | YES  |     | NULL    |       |
+| address     | text        | YES  |     | NULL    |       |
+| mobile_no   | bigint(20)  | YES  |     | NULL    |       |
+| dept_no     | varchar(10) | YES  | MUL | NULL    |       |
+| salary      | int(11)     | YES  |     | NULL    |       |
+| Designation | varchar(50) | YES  |     | NULL    |       |
++-------------+-------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE Orders DROP PRIMARY KEY;
+Query OK, 0 rows affected (0.97 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> DESC Orders;
++-------------+---------+------+-----+---------+-------+
+| Field       | Type    | Null | Key | Default | Extra |
++-------------+---------+------+-----+---------+-------+
+| OrderID     | int(11) | NO   |     | NULL    |       |
+| OrderNumber | int(11) | NO   |     | NULL    |       |
+| PersonID    | int(11) | YES  | MUL | NULL    |       |
++-------------+---------+------+-----+---------+-------+
+3 rows in set (0.00 sec)
+
