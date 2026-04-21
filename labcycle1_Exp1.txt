@@ -1,0 +1,73 @@
+LAB CYCLE 1
+EXPERIMENT NO : 1
+FAMILIARIZATION OF DDL COMMANDS
+
+A.Consider the database for a college.Write sql commands to implement the following 
+
+	1.Create a database.
+	CREATE DATABASE college_db;
+
+	2.Select the current database.
+	USE college_db;
+
+	3.create the following tables.
+		a)Student(rool_no integer,name varchar,dob date,address text,phone_no varchar,blood_grp varchar)
+		CREATE TABLE Student (roll_no INT,name VARCHAR(50),dob DATE,address TEXT,phone_no VARCHAR(15),blood_grp VARCHAR(5));
+
+		b)Course(course_id integher,course_name varchar,course_duration integer)
+		CREATE TABLE Course (course_id INT,course_name VARCHAR(50),course_duration INT);
+
+	4.List all tables in the current database.
+	SHOW TABLES;
+
+	5.Display the structure of student table.
+	DESC Student;
+
+	6.Drop the column blood_grp from the Student table.
+	ALTER TABLE Student
+	DROP COLUMN blood_grp;
+
+	7.Add a new column adhaar_no with domain number to the table student.
+	ALTER TABLE Student
+	ADD adhaar_no BIGINT;
+
+	8.Change the datatype of phone_no from varchar to int
+	ALTER TABLE Student
+	MODIFY phone_no INT;
+
+	9.Drop the tables
+	DROP TABLE Student;
+	DROP TABLE Course;	
+
+	10.Delete the database
+	DROP DATABASE college_db;
+
+B.Consider the database for an organization.Write sql commands to implemnt the following:
+	
+	1.Create a database.
+	CREATE DATABASE organization_db;
+
+	2.Select the current database.
+	USE organization_db;
+
+	3.Create the following tables
+		a)Employee(emp_no varchar,emp_name varchar,dob date,address text,mobile_no integer,dept_no varchar,salary integer) 
+		CREATE TABLE Employee (emp_no VARCHAR(10),emp_name VARCHAR(50),dob DATE,address TEXT,mobile_no BIGINT,dept_no VARCHAR(10),salary INT);		
+
+		b)Department(dept_no varchar,dept_name varchar,location varchar)
+		CREATE TABLE Department (dept_no VARCHAR(10),dept_name VARCHAR(50),location VARCHAR(50));
+
+	4.List all tables in the current database.
+	SHOW TABLES;
+
+	5.Display the structureof the Employee table & Department table.
+	DESC Employee;
+	DESC Department;
+
+	6.Add a new column 'Designation' to the table Employee.
+	ALTER TABLE Employee ADD Designation VARCHAR(50);
+
+	7.Drop column 'location' from Department table.
+	ALTER TABLE Department DROP COLUMN location;
+
+	
