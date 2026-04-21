@@ -1,0 +1,37 @@
+Experiment No: 2 
+Familiarization of SQL Constraints
+
+1.Create new table Persons with attributes PersonID (integer, PRIMARY KEY), Name (varchar, NOT NULL), Aadhar (Number, NOT NULL, UNIQUE), Age (integer, CHECK >18).
+
+CREATE TABLE Persons (PersonID INT PRIMARY KEY,Name VARCHAR(100) NOT NULL,Aadhar BIGINT NOT NULL UNIQUE,Age INT CHECK (Age > 18));
+
+2.Create table Orders with OrderID (PRIMARY KEY), OrderNumber (NOT NULL) and PersonID as FOREIGN KEY referencing Persons table.
+
+CREATE TABLE Orders (OrderID INT PRIMARY KEY,OrderNumber INT NOT NULL,PersonID INT,FOREIGN KEY (PersonID) REFERENCES Persons(PersonID));
+
+3. Display structure of Persons table
+
+DESC Persons;
+
+
+4. Display structure of Orders table
+
+DESC Orders;
+
+5. Add emp_no as PRIMARY KEY in Employee table
+
+ALTER TABLE Employee ADD CONSTRAINT pk_employee PRIMARY KEY (emp_no);
+
+6. Add dept_no as PRIMARY KEY in Department table
+
+ALTER TABLE Department ADD CONSTRAINT pk_department PRIMARY KEY (dept_no);
+
+7. Add dept_no as FOREIGN KEY in Employee with ON DELETE CASCADE
+
+ALTER TABLE Employee ADD CONSTRAINT fk_dept FOREIGN KEY (dept_no)
+REFERENCES Department(dept_no) ON DELETE CASCADE;
+
+8. Drop PRIMARY KEY of Orders table
+
+ALTER TABLE Orders DROP PRIMARY KEY;
+
